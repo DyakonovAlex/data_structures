@@ -1,4 +1,5 @@
 pub mod unsorted;
+pub mod sorted;
 
 #[derive(Debug, PartialEq)]
 pub enum ArrayError {
@@ -6,6 +7,9 @@ pub enum ArrayError {
     Empty,
     IndexOutOfBounds,
 }
+
+pub(crate) const INVARIANT_VIOLATED_ELEMENT_MUST_EXIST: &str =
+    "internal invariant violated: element must exist";
 
 pub trait Array<T> {
     /// Вставка элемента в массив

@@ -1,4 +1,4 @@
-use crate::arrays::{Array, ArrayError};
+use crate::arrays::{Array, ArrayError, INVARIANT_VIOLATED_ELEMENT_MUST_EXIST};
 
 pub struct UnsortedArray<T> {
     data: Box<[Option<T>]>, 
@@ -43,7 +43,7 @@ impl<T> Array<T> for UnsortedArray<T> {
         let item = self
             .data[index]
             .take()
-            .expect("internal invariant violated: element must exist");
+            .expect(INVARIANT_VIOLATED_ELEMENT_MUST_EXIST);
 
         self.data[index] = self.data[last_index].take();
         self.size -= 1;
